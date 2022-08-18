@@ -28,7 +28,7 @@ body{
     width: 200px;
     height: 250px;
     position: relative;
-    
+    margin:17px;
 }
   .face {
     width: 100%;
@@ -45,7 +45,7 @@ body{
     transform-style: preserve-3d;
   }
 
-.back-face {
+.gif {
     transform: rotateY(180deg);
 }
 
@@ -57,6 +57,6 @@ body{
     transform: rotateY(-180deg);
   }
 
-.front-face img{
+.papagaio img{
     width: 100px;
 }
