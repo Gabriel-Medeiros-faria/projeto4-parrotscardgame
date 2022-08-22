@@ -9,7 +9,7 @@ let podeVirarCartas = true
 
 
 function Inicio() {
-
+  document.querySelector("ul").innerHTML = "";
   pergunta = (prompt("com quantas cartas deseja jogar ?, entre 4 e 14, e tem que ser número par :)"))
   let lista = document.querySelector('ul')
   if (pergunta >= 4 && pergunta % 2 === 0 && pergunta <= 14) {
@@ -40,15 +40,15 @@ function cartaClique(carta) {
   if(carta.classList.contains('acertada')===true){
     return
   }
-
+if(podeVirarCartas){
   quantidadeJogadas=quantidadeJogadas+1
   let papagaio = carta.querySelector(".papagaio")
   let gif = carta.querySelector(".gif")
 
   papagaio.classList.add("front-click")
   gif.classList.add("back-click")
-  
-  verificarPar(carta)
+verificarPar(carta)
+  }
 }
 
 function virarCarta(carta) {
@@ -90,8 +90,13 @@ function verificarPar(carta) {
     }
 
     else {
-      setTimeout(virarCarta, 1000, primeiroItemArray)
-      setTimeout(virarCarta, 1000, segundoItemArray)
+      podeVirarCartas=false
+      setTimeout(function(){
+        virarCarta(primeiroItemArray);
+        virarCarta(segundoItemArray);
+        podeVirarCartas = true;
+        },1000)
+        console.log(podeVirarCartas)
     }
     arrDeDois = []
     
@@ -107,14 +112,14 @@ function checarFinalJogo(){
 } 
 function finalAlert(){
   alert("Você ganhou em " + quantidadeJogadas + " jogadas!")
-  let Perguntadnv = prompt("Gostaria de jogar novamente?")
-  if(Perguntadnv === "sim"){
-    repeteInicio()
+  let perguntadnv = prompt("gostaria de jogar novamente?")
+
+  if(perguntadnv === "sim"){
+    Inicio()
   }
   else{
-    alert("Obrigado por jogar :) ")
+    alert("obrigado por jogar")
   }
-
 }
 
 function repeteInicio(){
